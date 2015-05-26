@@ -1,0 +1,28 @@
+<%= form_for(@site) do |f| %>
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        <ul>
+        <% @site.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <% if current_user.super_admin? -%>
+  <div class="form-group">
+    <%= f.label :tenant %><br />
+    <%= f.select :tenant, @tenants.collect {|u| [u.name, u.id]},{:selected => @site.tenant.try(:id), :prompt => '--Select--'}, class: "form-control" %>
+  </div>
+  <% end -%>
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-success" %>
+    <%= link_to 'Back', sites_path,  class: "btn btn-default" %>
+  </div>
+<% end %>

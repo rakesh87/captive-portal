@@ -1,0 +1,43 @@
+<%= form_for(@site_role, class: "form") do |f| %>
+  <% if @site_role.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        <ul>
+        <% @site_role.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :class => "form-control" %>
+  </div><br>
+  <h4>Access Permission</h4>
+  <table class="table">
+    <thead>
+      <th>Access</th>
+      <th>Read</th>
+      <th>Write</th>
+    </thead>
+    <tbody>
+      <%= form_tag %>
+      <% SiteAccess::RESOURCES.keys.each do |res| %>
+        <tr class="field">
+          <td>
+            <%= res.humanize %>
+            <%= hidden_field_tag("site_accesses[][access_for]", res) %>
+          </td>
+          <td><label><%= check_box_tag("site_accesses[][read]", '1', @selected_fields[res].try(:[], 0), options = {}) %></label></td>
+          <td><label><%= check_box_tag("site_accesses[][write]", '1', @selected_fields[res].try(:[], 1),options = {}) %></label></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit (@site_role.new_record? ? "Create" : "Update"), :class => "btn btn-success" %>
+    <%= link_to 'Back', site_roles_path, :class => 'btn btn-default' %>
+  </div>
+<% end %>

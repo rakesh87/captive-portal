@@ -1,0 +1,26 @@
+<h1>Sites</h1>
+<%= link_to 'New Site', new_site_path, class: 'btn btn-primary' if can? :write, Site %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Partner</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.name %></td>
+        <td><%= site.tenant.try(:name) %></td>
+        <td><%= link_to 'Edit', edit_site_path(site), class: "label label-info" %>
+        <%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' }, class: "label label-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

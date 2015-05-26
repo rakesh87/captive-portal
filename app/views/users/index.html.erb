@@ -1,0 +1,59 @@
+<h2>Users</h2>
+
+<% if false %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= link_to 'select Partner', "#select_Partner", class: 'btn btn-primary'%></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+</div>
+<% end %>
+<% if false %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= link_to 'Create New Customer', new_customer_url, class: 'btn btn-primary'%></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+</div>
+<% end %>
+<div class="table-responsive">
+  <%= link_to 'Create User', new_user_url, class: 'btn btn-primary' if can? :write, User %>
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Email</th>
+        <th>Tenant</th>
+        <th>Role</th>
+        <th align="center">Actions</th>
+      </tr>
+    </thead>
+    <% @users.each do |user| %>
+      <tr class="">
+	      <td><%= user.email %></td>
+        <td><%= user.tenant.name rescue '-' %></td>
+        <td><%= user.user_role %></td>
+        <td>
+          <% if current_user.super_admin? %>
+            <%= link_to("Edit", edit_user_url(user), class: 'label label-info') %>
+                <% if user.is_active? %>
+                  <%= link_to("Deactivate", deactivate_user_url(user), method: :patch, data: { confirm: 'Are you sure?' }, class: 'label label-danger') %>
+                <% else %>
+                  <%= link_to("Activate", activate_user_url(user), method: :patch, data: { confirm: 'Are you sure?' }, class: 'label label-danger') %>
+                <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @users %>
+</div>

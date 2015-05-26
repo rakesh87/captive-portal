@@ -1,0 +1,29 @@
+<h2>New Partner Customer</h2>
+
+<%= form_for(@customer, method: :post, role: "form") do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+  <%= f.fields_for :user, @user do |login_form| %>
+    <div class="form-group">
+      <%= login_form.label :email %><br />
+      <%= login_form.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= login_form.label :password %>
+
+      <%= login_form.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+  <% end %>
+  <div class="actions form-group">
+    <div class="col-sm-10">
+      <%= f.submit "Create" %>
+      <%= link_to 'Back', customers_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>
+

@@ -1,0 +1,20 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Activity Feed</th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @activities.each do |activity| %>
+        <tr class="activity">
+          <td>
+            <i class="text text-info"><%= activity.owner.email if activity.owner %></i>
+            <%= render_activity activity %>
+          </td>
+        </tr>
+	    <% end %>
+      </tbody>
+  </table>
+  <%= paginate @activities if current_user.super_admin? %>
+</div>

@@ -1,0 +1,2 @@
+class RadiusConfiguration 
+end

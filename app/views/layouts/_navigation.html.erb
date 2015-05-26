@@ -1,0 +1,19 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <% if user_signed_in? %>
+    <div class="navbar-header">
+      <div class="navbar-brand">Management</div>
+      <%= link_to("#{current_user.tenant.name}", "#", class: "navbar-brand", style: "color: #5c92fa;") if current_user.tenant %>
+    </div>
+    <% end %>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class='navbar-brand'>Current Role: <strong><%= current_role.humanize %></strong></li>
+        <li><%= link_to 'Activity Log ', notifications_index_url%></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+        <li><%= link_to("Sign in", new_user_session_path)%></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,65 @@
+<%= form_for(@tenant, method: (@tenant.new_record? ? :post : :put), role: "form") do |f| %>
+  <% if @tenant.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        <ul>
+        <% @tenant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+<% if false %>
+  <h4>Permitted Roles</h4>
+  <table class="table">
+    <thead>
+      <th>Access</th>
+      <th>Permission</th>
+    </thead>
+    <% if current_user.super_admin? %>
+      <tbody>
+        <% SiteRole.all.each do |role| %>
+          <tr class="field">
+            <td>
+              <%= role.name.humanize %>
+              <%#= hidden_field_tag("available_roles[][role_permission_for]", role.name) %>
+            </td>
+            <td>
+              <label>
+                <%= check_box_tag("available_roles[]", role.id, @tenant.available_roles.map(&:site_role_id).include?(role.id), options = {}) %>
+              </label>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tbody>
+        <% current_user.available_roles.each do |role| %>
+          <tr class="field">
+            <td>
+              <%= role.site_role_name.humanize %>
+            </td>
+            <td>
+              <label>
+                <%= check_box_tag("available_roles[]", role.site_role_id, options = {}) %>
+              </label>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+<% end %>
+  <div class="actions form-group">
+    <div class="col-sm-10">
+      <%= f.submit (@tenant.new_record? ? "Create" : "Update"), class: 'btn btn-success' %>
+      <%= link_to 'Back', tenants_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

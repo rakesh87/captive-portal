@@ -1,0 +1,3 @@
+class SiteTemplate
+
+end

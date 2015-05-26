@@ -1,0 +1,824 @@
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 330.0179ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"email"=>"rakesh.verma@wavespot.net"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 112.4597ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000'), "email"=>"rakesh.verma@wavespot.net", "encrypted_password"=>"$2a$10$LH1WQHR3f8Ju/PYMGFhn6OhTEHkS0hL38FYKX6LNddlPvFnqzoDUO", "sign_in_count"=>0}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 300.5043ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"email"=>"arun@wavespot.net"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 8.2003ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5491b06272616b5ef8010000'), "email"=>"arun@wavespot.net", "encrypted_password"=>"$2a$10$36OVuzn6sromza/iMvIJGuiJOrc3mEnZcrvrYOayo0EvHUywT65dS", "sign_in_count"=>0}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.2673ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$query"=>{"name"=>"admin", "resource_type"=>nil, "resource_id"=>nil}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 3.2414ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=roles documents=[{"_id"=>BSON::ObjectId('5491b06272616b5ef8020000'), "name"=>"admin", "resource_type"=>nil, "resource_id"=>nil}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 2.7106ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$and"=>[{"_id"=>{"$in"=>[]}}], "_id"=>BSON::ObjectId('5491b06272616b5ef8020000')} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 22.6868ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=users selector={"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')} update={"$addToSet"=>{"role_ids"=>{"$each"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 28.7230ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=roles selector={"_id"=>BSON::ObjectId('5491b06272616b5ef8020000')} update={"$addToSet"=>{"user_ids"=>{"$each"=>[BSON::ObjectId('5491b06272616b5ef8000000')]}}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8493ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$query"=>{"name"=>"admin", "resource_type"=>nil, "resource_id"=>nil}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9573ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$and"=>[{"_id"=>{"$in"=>[]}}], "_id"=>BSON::ObjectId('5491b06272616b5ef8020000')} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 0.6028ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=users selector={"_id"=>BSON::ObjectId('5491b06272616b5ef8010000')} update={"$addToSet"=>{"role_ids"=>{"$each"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8690ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=roles selector={"_id"=>BSON::ObjectId('5491b06272616b5ef8020000')} update={"$addToSet"=>{"user_ids"=>{"$each"=>[BSON::ObjectId('5491b06272616b5ef8010000')]}}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8329ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:04:09 +0530
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 143ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-12-17 22:04:09 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (89.2ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+Completed 200 OK in 6968ms (Views: 6963.1ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-12-17 22:04:35 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lg46pPVI/yRk2H1u2WPX/+YoXDUsA29kjCSeFuqvdvA=", "user"=>{"email"=>"rakesh.verma@wavespot.net", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 1.5872ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"email"=>"rakesh.verma@wavespot.net"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9987ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=users selector={"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')} update={"$set"=>{"last_sign_in_at"=>2014-12-17 16:34:35 UTC, "current_sign_in_at"=>2014-12-17 16:34:35 UTC, "last_sign_in_ip"=>"127.0.0.1", "current_sign_in_ip"=>"127.0.0.1", "sign_in_count"=>1}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.0732ms
+Redirected to http://0.0.0.0:3000/
+Completed 302 Found in 293ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:04:36 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8159ms
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+Completed 200 OK in 81ms (Views: 78.0ms)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2014-12-17 22:04:44 +0530
+Processing by UsersController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0224ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"roles", :query=>{"$and"=>[{"_id"=>{"$in"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}], "$or"=>[{"name"=>"admin", "resource_type"=>nil, "resource_id"=>nil}]}} runtime: 13.0587ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$query"=>{"$and"=>[{"_id"=>{"$in"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}], "resource_type"=>"Partner", "name"=>"partner_admin"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0455ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"roles", :query=>{"$and"=>[{"_id"=>{"$in"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}], "$or"=>[{"name"=>"partner_admin", "resource_type"=>nil, "resource_id"=>nil}]}} runtime: 0.9227ms
+  Rendered users/index.html.erb within layouts/application (24.0ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+Completed 200 OK in 101ms (Views: 96.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:09:43 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.6908ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.7529ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$query"=>{"$and"=>[{"_id"=>{"$in"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}]}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8753ms
+Completed 500 Internal Server Error in 26ms
+
+RuntimeError - "admin":
+  app/controllers/home_controller.rb:5:in `index'
+  actionpack (4.1.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/697b5287e051211a/variables" for 127.0.0.1 at 2014-12-17 22:09:43 +0530
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:11:31 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7180ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8714ms
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+Completed 200 OK in 71ms (Views: 61.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:11:35 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7516ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0178ms
+  Rendered home/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_navigation.html.erb (0.5ms)
+Completed 200 OK in 77ms (Views: 68.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:12:17 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7001ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.2721ms
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+Completed 200 OK in 78ms (Views: 68.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:12:55 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7808ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.7399ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$query"=>{"$and"=>[{"_id"=>{"$in"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}]}, "$orderby"=>{:_id=>-1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9014ms
+Completed 500 Internal Server Error in 28ms
+
+TypeError - exception class/object expected:
+  app/controllers/home_controller.rb:5:in `index'
+  actionpack (4.1.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/0b38154d5a8f1b9c/variables" for 127.0.0.1 at 2014-12-17 22:12:55 +0530
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:13:02 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8850ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=roles selector={"$query"=>{"$and"=>[{"_id"=>{"$in"=>[BSON::ObjectId('5491b06272616b5ef8020000')]}}]}, "$orderby"=>{:_id=>-1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0293ms
+Completed 500 Internal Server Error in 25ms
+
+RuntimeError - #<Role _id: 5491b06272616b5ef8020000, user_ids: [BSON::ObjectId('5491b06272616b5ef8000000'), BSON::ObjectId('5491b06272616b5ef8010000')], resource_type: nil, resource_id: nil, name: "admin">:
+  app/controllers/home_controller.rb:5:in `index'
+  actionpack (4.1.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.0.0) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/rakesh/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/bb03a9af60e479da/variables" for 127.0.0.1 at 2014-12-17 22:13:02 +0530
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-17 22:16:50 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.6585ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8312ms
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+Completed 200 OK in 78ms (Views: 68.8ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 1.5477ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"email"=>"rakesh.verma@wavespot.net"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 0.8021ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5494516572616b0d31000000'), "email"=>"rakesh.verma@wavespot.net", "encrypted_password"=>"$2a$10$neT.rH.Z6g0Ns2fk8UVjBOmo86lcSirslii9rtflvgbHQfgkomSRK", "sign_in_count"=>0, "is_admin"=>true}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 110.4677ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"email"=>"arun@wavespot.net"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 0.6291ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5494516572616b0d31010000'), "email"=>"arun@wavespot.net", "encrypted_password"=>"$2a$10$1XLuyH89K2jegCrUrrrfWuTeTIR5hg2fYHK6jU1sssYCzKwVSnHmu", "sign_in_count"=>0, "is_admin"=>true}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8577ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"email"=>"rakesh.verma0487@gmail.com"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 0.6160ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5494516572616b0d31020000'), "email"=>"rakesh.verma0487@gmail.com", "encrypted_password"=>"$2a$10$SOu2kSe5hRo521Nbz2jB6ON.LLhzLrfiE6pwkMg6Fdh55o3cGx6be", "sign_in_count"=>0, "is_admin"=>true}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7148ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-30 22:54:42 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 915.8196ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 254.8454ms
+Completed 401 Unauthorized in 1225ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-30 22:54:43 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.6985ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5491b06272616b5ef8000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.7389ms
+Completed 401 Unauthorized in 9ms
+
+
+Started GET "/portal/users/sign_in" for 127.0.0.1 at 2014-12-30 22:54:43 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (147.9ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+Completed 200 OK in 879ms (Views: 874.0ms)
+
+
+Started POST "/portal/users/sign_in" for 127.0.0.1 at 2014-12-30 22:54:48 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RybOBdogAT2uSCSTa9X7pF1CL5Tr4fVaYATv63ozSMY=", "user"=>{"email"=>"verma@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7988ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"email"=>"verma@gmail.com"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 152.7002ms
+Completed 401 Unauthorized in 197ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RybOBdogAT2uSCSTa9X7pF1CL5Tr4fVaYATv63ozSMY=", "user"=>{"email"=>"verma@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered devise/sessions/new.html.erb within layouts/application (6.2ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+Completed 200 OK in 228ms (Views: 88.9ms)
+
+
+Started POST "/portal/users/sign_in" for 127.0.0.1 at 2014-12-30 22:55:22 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RybOBdogAT2uSCSTa9X7pF1CL5Tr4fVaYATv63ozSMY=", "user"=>{"email"=>"rakesh.verma@wavespot.net", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 1.1369ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"email"=>"rakesh.verma@wavespot.net"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.1559ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=users selector={"_id"=>BSON::ObjectId('5494516572616b0d31000000')} update={"$set"=>{"is_active"=>true, "last_sign_in_at"=>2014-12-30 17:25:22 UTC, "current_sign_in_at"=>2014-12-30 17:25:22 UTC, "last_sign_in_ip"=>"127.0.0.1", "current_sign_in_ip"=>"127.0.0.1", "sign_in_count"=>1}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 29.4831ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=public_activity_orm_mongoid_activities documents=[{"_id"=>BSON::ObjectId('54a2e00272616b2b49000000'), "_type"=>"PublicActivity::Activity", "details"=>{"is_active"=>[nil, true], "last_sign_in_at"=>[nil, 2014-12-30 17:25:22 UTC], "current_sign_in_at"=>[nil, 2014-12-30 17:25:22 UTC], "last_sign_in_ip"=>[nil, "127.0.0.1"], "current_sign_in_ip"=>[nil, "127.0.0.1"], "sign_in_count"=>[0, 1]}, "key"=>"user.update", "parameters"=>{}, "owner_id"=>BSON::ObjectId('5494516572616b0d31000000'), "owner_type"=>"User", "trackable_id"=>BSON::ObjectId('5494516572616b0d31000000'), "trackable_type"=>"User", "updated_at"=>2014-12-30 17:25:22 UTC, "created_at"=>2014-12-30 17:25:22 UTC}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 132.0947ms
+Redirected to http://0.0.0.0:3000/
+Completed 302 Found in 403ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-30 22:55:22 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.7829ms
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation.html.erb (2.8ms)
+Completed 200 OK in 308ms (Views: 292.9ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2014-12-30 22:55:39 +0530
+Processing by UsersController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7439ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.7771ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"is_admin"=>false} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 0.6158ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"users", :query=>{"is_admin"=>false}} runtime: 17.8422ms
+  Rendered users/index.html.erb within layouts/application (52.7ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+Completed 200 OK in 154ms (Views: 142.5ms)
+
+
+Started GET "/tenants" for 127.0.0.1 at 2014-12-30 22:55:42 +0530
+Processing by TenantsController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8438ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=tenants selector={} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 4.1423ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"tenants", :query=>{}} runtime: 0.9203ms
+  Rendered tenants/index.html.erb within layouts/application (12.2ms)
+  Rendered layouts/_navigation.html.erb (1.1ms)
+Completed 200 OK in 148ms (Views: 138.4ms)
+
+
+Started GET "/site_roles" for 127.0.0.1 at 2014-12-30 22:55:45 +0530
+Processing by SiteRolesController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.1633ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 2.0340ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"site_roles", :query=>{}} runtime: 0.7911ms
+  Rendered site_roles/index.html.erb within layouts/application (10.8ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+Completed 200 OK in 117ms (Views: 105.5ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2014-12-30 22:56:01 +0530
+Processing by UsersController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9693ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"is_admin"=>false} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 0.6994ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"users", :query=>{"is_admin"=>false}} runtime: 1.0845ms
+  Rendered users/index.html.erb within layouts/application (7.0ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+Completed 200 OK in 130ms (Views: 116.6ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2014-12-30 22:56:03 +0530
+Processing by UsersController#new as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9645ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=tenants selector={} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.6073ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.5855ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.6374ms
+  Rendered users/_permitted_roles.html.erb (2.4ms)
+  Rendered users/_form.html.erb (35.6ms)
+  Rendered users/new.html.erb within layouts/application (37.8ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+Completed 200 OK in 154ms (Views: 138.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2014-12-30 22:56:10 +0530
+Processing by UsersController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9490ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"is_admin"=>false} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 0.7382ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"users", :query=>{"is_admin"=>false}} runtime: 1.9642ms
+  Rendered users/index.html.erb within layouts/application (10.1ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+Completed 200 OK in 132ms (Views: 116.6ms)
+
+
+Started GET "/tenants" for 127.0.0.1 at 2014-12-30 22:56:11 +0530
+Processing by TenantsController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0640ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=tenants selector={} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 0.5488ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"tenants", :query=>{}} runtime: 0.6566ms
+  Rendered tenants/index.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+Completed 200 OK in 120ms (Views: 107.6ms)
+
+
+Started GET "/tenants/new" for 127.0.0.1 at 2014-12-30 22:56:13 +0530
+Processing by TenantsController#new as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9287ms
+  Rendered tenants/_form.html.erb (6.4ms)
+  Rendered tenants/new.html.erb within layouts/application (19.3ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+Completed 200 OK in 147ms (Views: 128.5ms)
+
+
+Started GET "/site_roles" for 127.0.0.1 at 2014-12-30 22:56:15 +0530
+Processing by SiteRolesController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0688ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 0.9069ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"site_roles", :query=>{}} runtime: 1.5511ms
+  Rendered site_roles/index.html.erb within layouts/application (9.4ms)
+  Rendered layouts/_navigation.html.erb (1.1ms)
+Completed 200 OK in 135ms (Views: 121.4ms)
+
+
+Started GET "/site_roles/new" for 127.0.0.1 at 2014-12-30 22:56:16 +0530
+Processing by SiteRolesController#new as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 2.2844ms
+  Rendered site_roles/_form.html.erb (29.1ms)
+  Rendered site_roles/new.html.erb within layouts/application (38.0ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+Completed 200 OK in 155ms (Views: 139.9ms)
+
+
+Started GET "/time_policy" for 127.0.0.1 at 2014-12-30 22:56:25 +0530
+Processing by HomeController#time_policy as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0037ms
+  Rendered home/time_policy.html.erb within layouts/application (9.2ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+Completed 200 OK in 135ms (Views: 128.4ms)
+
+
+Started DELETE "/portal/users/sign_out" for 127.0.0.1 at 2014-12-30 22:58:44 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"4Q4GDjFtCEuhHqYMUnsKAZ7kbFJo4Y3HclRAz5OjMow="}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7590ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.0721ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5494516572616b0d31000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 2.4178ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=public_activity_orm_mongoid_activities documents=[{"_id"=>BSON::ObjectId('54a2e0cc72616b2b49010000'), "_type"=>"PublicActivity::Activity", "details"=>{}, "key"=>"user.update", "parameters"=>{}, "owner_id"=>BSON::ObjectId('5494516572616b0d31000000'), "owner_type"=>"User", "trackable_id"=>BSON::ObjectId('5494516572616b0d31000000'), "trackable_type"=>"User", "updated_at"=>2014-12-30 17:28:44 UTC, "created_at"=>2014-12-30 17:28:44 UTC}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9356ms
+Redirected to http://0.0.0.0:3000/
+Completed 302 Found in 43ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-30 22:58:44 +0530
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/portal/users/sign_in" for 127.0.0.1 at 2014-12-30 22:58:44 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (3.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (13.1ms)
+  Rendered layouts/_navigation.html.erb (1.1ms)
+Completed 200 OK in 104ms (Views: 101.4ms)
+
+
+Started GET "/portal/users/password/new" for 127.0.0.1 at 2014-12-30 22:58:47 +0530
+Processing by Devise::PasswordsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/passwords/new.html.erb within layouts/application (11.1ms)
+  Rendered layouts/_navigation.html.erb (1.1ms)
+Completed 200 OK in 133ms (Views: 131.1ms)
+
+
+Started POST "/portal/users/password" for 127.0.0.1 at 2014-12-30 22:59:01 +0530
+Processing by Devise::PasswordsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yQGpHiBD/0PwtBiGw2NgXzqpErddc80vQV90XRxpKXw=", "user"=>{"email"=>""}, "commit"=>"Send me reset password instructions"}
+  Rendered devise/shared/_links.html.erb (1.1ms)
+  Rendered devise/passwords/new.html.erb within layouts/application (8.1ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+Completed 200 OK in 120ms (Views: 90.0ms)
+
+
+Started POST "/portal/users/password" for 127.0.0.1 at 2014-12-30 22:59:07 +0530
+Processing by Devise::PasswordsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yQGpHiBD/0PwtBiGw2NgXzqpErddc80vQV90XRxpKXw=", "user"=>{"email"=>"rakesh.verma0487@gmail.com"}, "commit"=>"Send me reset password instructions"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.7455ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"email"=>"rakesh.verma0487@gmail.com"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.1490ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"reset_password_token"=>"151b993cec56e3b018ae700560851fce0962063fea6051873787b8663ec591af"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.7158ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=users selector={"_id"=>BSON::ObjectId('5494516572616b0d31020000')} update={"$set"=>{"is_active"=>true, "reset_password_token"=>"151b993cec56e3b018ae700560851fce0962063fea6051873787b8663ec591af", "reset_password_sent_at"=>2014-12-30 17:29:07 UTC}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9193ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=public_activity_orm_mongoid_activities documents=[{"_id"=>BSON::ObjectId('54a2e0e372616b2b49020000'), "_type"=>"PublicActivity::Activity", "details"=>{"is_active"=>[nil, true], "reset_password_token"=>[nil, "151b993cec56e3b018ae700560851fce0962063fea6051873787b8663ec591af"], "reset_password_sent_at"=>[nil, 2014-12-30 17:29:07 UTC]}, "key"=>"user.update", "parameters"=>{}, "trackable_id"=>BSON::ObjectId('5494516572616b0d31020000'), "trackable_type"=>"User", "updated_at"=>2014-12-30 17:29:07 UTC, "created_at"=>2014-12-30 17:29:07 UTC}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9827ms
+  Rendered devise/mailer/reset_password_instructions.html.erb (18.9ms)
+
+Devise::Mailer#reset_password_instructions: processed outbound mail in 483.9ms
+
+Sent mail to rakesh.verma0487@gmail.com (19.7ms)
+Date: Tue, 30 Dec 2014 22:59:08 +0530
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: rakesh.verma0487@gmail.com
+Message-ID: <54a2e0e46e1d1_2b495ddf34247bf@rakesh0487.mail>
+Subject: Reset password instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello rakesh.verma0487@gmail.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/portal/users/password/edit?reset_password_token=DVqK96qhw4ijqyN9zAhM">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+Redirected to http://0.0.0.0:3000/portal/users/sign_in
+Completed 302 Found in 1043ms
+
+
+Started GET "/portal/users/sign_in" for 127.0.0.1 at 2014-12-30 22:59:08 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (10.3ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+Completed 200 OK in 98ms (Views: 94.8ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 346.4135ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5563765672616b72de000000'), "email"=>"admin1@wavespot.net", "encrypted_password"=>"$2a$10$ztpZ4/6kMoGr8ZUbWTm9B.Vq3Yd/OB/QuYUYLee87Q0hv56ruWdXm", "sign_in_count"=>0, "is_active"=>true, "is_admin"=>true}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 280.8492ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5563765772616b72de010000'), "email"=>"admin2@wavespot.net", "encrypted_password"=>"$2a$10$iq7Wz0yPT/18526jHiQroeOz2cIIUshJrJ3ADAHHyZF/X8Yc/qICu", "sign_in_count"=>0, "is_active"=>true, "is_admin"=>true}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9525ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={"name"=>"Tenant"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 36.0665ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_roles documents=[{"_id"=>BSON::ObjectId('5563765772616b72de030000'), "name"=>"Tenant"}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 43.8591ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_accesses selector={"site_role_id"=>BSON::ObjectId('5563765772616b72de030000')} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.4030ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de020000'), "access_for"=>"users", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 3.3878ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de040000'), "access_for"=>"sites", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9234ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de050000'), "access_for"=>"templates", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 2.5713ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de060000'), "access_for"=>"vouchers", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.2490ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de070000'), "access_for"=>"sms_gateway", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8609ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de080000'), "access_for"=>"radius_configuration", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.4370ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de090000'), "access_for"=>"time_policy", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8543ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de0a0000'), "access_for"=>"guests", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7358ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de0b0000'), "access_for"=>"analytics", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8332ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de0c0000'), "access_for"=>"access_points", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9410ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de0d0000'), "access_for"=>"reports", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de030000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.1740ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={"name"=>"Site Admin"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 7.2180ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_roles documents=[{"_id"=>BSON::ObjectId('5563765772616b72de0f0000'), "name"=>"Site Admin"}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 14.2731ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_accesses selector={"site_role_id"=>BSON::ObjectId('5563765772616b72de0f0000')} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.2257ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de0e0000'), "access_for"=>"sites", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de0f0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.8381ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de100000'), "access_for"=>"vouchers", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de0f0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 3.3033ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de110000'), "access_for"=>"templates", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de0f0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 2.8169ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de120000'), "access_for"=>"reports", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5563765772616b72de0f0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9848ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={"name"=>"Guest Ambassador"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 0.7421ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_roles documents=[{"_id"=>BSON::ObjectId('5563765772616b72de140000'), "name"=>"Guest Ambassador"}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9913ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_accesses selector={"site_role_id"=>BSON::ObjectId('5563765772616b72de140000')} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.8878ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5563765772616b72de130000'), "access_for"=>"analytics", "read"=>true, "write"=>false, "site_role_id"=>BSON::ObjectId('5563765772616b72de140000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.1819ms
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-26 00:52:56 +0530
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 42ms
+
+
+Started GET "/portal/users/sign_in" for 127.0.0.1 at 2015-05-26 00:52:56 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (55.9ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+Completed 200 OK in 532ms (Views: 526.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-26 22:42:59 +0530
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 76ms
+
+
+Started GET "/portal/users/sign_in" for 127.0.0.1 at 2015-05-26 22:42:59 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (151.5ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+Completed 200 OK in 724ms (Views: 702.3ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 42.1728ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:dropDatabase=>1} runtime: 246.8368ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 1.4601ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=users documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000'), "email"=>"rakesh@verma.com", "encrypted_password"=>"$2a$10$QmkBjvvf3YICeGvcs0QMCeqFZ4LNOkWvWHjbaZY5SdIRLlEo0UtcC", "sign_in_count"=>0, "is_active"=>true, "is_admin"=>true}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 323.9797ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={"name"=>"Tenant"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 84.6425ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_roles documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa020000'), "name"=>"Tenant"}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 37.0091ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_accesses selector={"site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.1092ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa010000'), "access_for"=>"users", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 2.6577ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa030000'), "access_for"=>"sites", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.0259ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa040000'), "access_for"=>"templates", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.0190ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa050000'), "access_for"=>"vouchers", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7456ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa060000'), "access_for"=>"sms_gateway", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7430ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa070000'), "access_for"=>"radius_configuration", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.8637ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa080000'), "access_for"=>"time_policy", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7124ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa090000'), "access_for"=>"guests", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7215ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa0a0000'), "access_for"=>"analytics", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7276ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa0b0000'), "access_for"=>"access_points", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7214ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa0c0000'), "access_for"=>"reports", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.6968ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={"name"=>"Site Admin"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 13.0882ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_roles documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000'), "name"=>"Site Admin"}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 1.2854ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_accesses selector={"site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000')} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.8218ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa0d0000'), "access_for"=>"sites", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.9190ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa0f0000'), "access_for"=>"vouchers", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7655ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa100000'), "access_for"=>"templates", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7293ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa110000'), "access_for"=>"reports", "read"=>true, "write"=>true, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7068ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={"name"=>"Guest Ambassador"} flags=[] limit=-1 skip=0 batch_size=nil fields={:_id=>1} runtime: 0.6410ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_roles documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa130000'), "name"=>"Guest Ambassador"}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.7328ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_accesses selector={"site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa130000')} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 0.5357ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=site_accesses documents=[{"_id"=>BSON::ObjectId('5564aa3872616b0eaa120000'), "access_for"=>"analytics", "read"=>true, "write"=>false, "site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa130000')}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 0.6823ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 2.1538ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 20.1067ms
+
+
+Started POST "/portal/users/sign_in" for 127.0.0.1 at 2015-05-26 22:46:23 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Yh/7jJIK3ggyGobZmnWrptsfsHAXtxmR8FeZ6I6kEww=", "user"=>{"email"=>"rakesh@verma.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 1.5447ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"email"=>"rakesh@verma.com"}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 21.8329ms
+  MOPED: 127.0.0.1:27017 UPDATE       database=captiveportal_development collection=users selector={"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')} update={"$set"=>{"last_sign_in_at"=>2015-05-26 17:16:23 UTC, "current_sign_in_at"=>2015-05-26 17:16:23 UTC, "last_sign_in_ip"=>"127.0.0.1", "current_sign_in_ip"=>"127.0.0.1", "sign_in_count"=>1}} flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 18.8722ms
+  MOPED: 127.0.0.1:27017 INSERT       database=captiveportal_development collection=public_activity_orm_mongoid_activities documents=[{"_id"=>BSON::ObjectId('5564aa6772616b0ee5000000'), "_type"=>"PublicActivity::Activity", "details"=>{"last_sign_in_at"=>[nil, 2015-05-26 17:16:23 UTC], "current_sign_in_at"=>[nil, 2015-05-26 17:16:23 UTC], "last_sign_in_ip"=>[nil, "127.0.0.1"], "current_sign_in_ip"=>[nil, "127.0.0.1"], "sign_in_count"=>[0, 1]}, "key"=>"user.update", "parameters"=>{}, "owner_id"=>BSON::ObjectId('5564aa3872616b0eaa000000'), "owner_type"=>"User", "trackable_id"=>BSON::ObjectId('5564aa3872616b0eaa000000'), "trackable_type"=>"User", "updated_at"=>2015-05-26 17:16:23 UTC, "created_at"=>2015-05-26 17:16:23 UTC}] flags=[]
+                         COMMAND      database=captiveportal_development command={:getlasterror=>1, :w=>1} runtime: 10.8183ms
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 343ms
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-26 22:46:24 +0530
+Processing by HomeController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 29.3131ms
+  Rendered home/index.html.erb within layouts/application (3.8ms)
+  Rendered layouts/_navigation.html.erb (2.9ms)
+Completed 200 OK in 235ms (Views: 202.7ms)
+
+
+Started GET "/site_roles" for 127.0.0.1 at 2015-05-26 22:46:28 +0530
+Processing by SiteRolesController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8929ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=site_roles selector={} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 0.8456ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"users", :query=>{"site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa020000')}} runtime: 0.7521ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"users", :query=>{"site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa0e0000')}} runtime: 0.7007ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"users", :query=>{"site_role_id"=>BSON::ObjectId('5564aa3872616b0eaa130000')}} runtime: 0.6977ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"site_roles", :query=>{}} runtime: 0.5835ms
+  Rendered site_roles/index.html.erb within layouts/application (42.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+Completed 200 OK in 121ms (Views: 109.8ms)
+
+
+Started GET "/tenants" for 127.0.0.1 at 2015-05-26 22:46:30 +0530
+Processing by TenantsController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 1.1087ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=tenants selector={} flags=[] limit=10 skip=0 batch_size=nil fields=nil runtime: 1.5431ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"tenants", :query=>{}} runtime: 0.7138ms
+  Rendered tenants/index.html.erb within layouts/application (7.3ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+Completed 200 OK in 79ms (Views: 68.9ms)
+
+
+Started GET "/sites" for 127.0.0.1 at 2015-05-26 22:46:31 +0530
+Processing by SitesController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8569ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=sites selector={} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.4331ms
+  Rendered sites/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+Completed 200 OK in 75ms (Views: 65.9ms)
+
+
+Started GET "/notifications/index" for 127.0.0.1 at 2015-05-26 22:46:34 +0530
+Processing by NotificationsController#index as HTML
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.8148ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 18.0837ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.0070ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.7001ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.1551ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9144ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.7257ms
+  Rendered public_activity/user/_update.html.erb (3.7ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"public_activity_orm_mongoid_activities", :query=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}} runtime: 0.6996ms
+  Rendered notifications/index.html.erb within layouts/application (13.6ms)
+  Rendered layouts/_navigation.html.erb (1.3ms)
+Completed 200 OK in 119ms (Views: 89.1ms)
+
+
+Started GET "/notifications/index" for 127.0.0.1 at 2015-05-26 22:49:11 +0530
+Processing by NotificationsController#index as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.8613ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 2.0964ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.1175ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 3.0271ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.2928ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=public_activity_orm_mongoid_activities selector={"$query"=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}, "$orderby"=>{"created_at"=>-1}} flags=[] limit=0 skip=0 batch_size=nil fields=nil runtime: 1.2276ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9566ms
+  MOPED: 127.0.0.1:27017 QUERY        database=captiveportal_development collection=users selector={"$query"=>{"_id"=>BSON::ObjectId('5564aa3872616b0eaa000000')}, "$orderby"=>{:_id=>1}} flags=[] limit=-1 skip=0 batch_size=nil fields=nil runtime: 0.9003ms
+  Rendered public_activity/user/_update.html.erb (4.5ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=captiveportal_development command={:count=>"public_activity_orm_mongoid_activities", :query=>{"_type"=>{"$in"=>["PublicActivity::Activity"]}}} runtime: 1.5705ms
+  Rendered notifications/index.html.erb within layouts/application (13.2ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+Completed 200 OK in 107ms (Views: 84.5ms)

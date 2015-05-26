@@ -1,0 +1,2 @@
+class SmsGatewayManagement
+end

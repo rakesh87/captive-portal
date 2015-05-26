@@ -1,0 +1,38 @@
+<h2>Tenants</h2>
+<% if current_user.tenant?%>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= link_to 'Create New Customer', new_customer_url, class: 'btn btn-primary'%></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+</div>
+<% end %>
+<%= link_to 'Create New Tenant', new_tenant_url, class: 'btn btn-primary' if current_user.super_admin? %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th align="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @tenants.each do |tenant| %>
+      <tr>
+	      <td>
+          <%= tenant.name %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_tenant_url(tenant), class: 'label label-info'%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%= paginate @tenants -%>  
+</div>

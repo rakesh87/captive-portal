@@ -1,0 +1,72 @@
+<%= form_for(@user, method: (@user.new_record? ? :post : :put), role: "form") do |f| %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, class: "form-control" %>
+</div>
+
+<% if @user.new_record? %>
+  <div class="form-group">
+    <%= f.label :password %>
+
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+  </div>
+<% end %>
+
+<% if current_user.super_admin? %>    
+<div class="tenants form-group">
+  <%= f.label :tenant %><br />
+  <%= f.select :tenant, @tenants.collect {|u| [u.name, u.id]}, {:selected => @user.tenant.try(:id), :prompt => '--Select--'}, class: "form-control" %>
+</div>
+
+<% end %>
+
+<div class="form-group">
+  <%= f.label :role %><br />
+  <%= f.select :site_role_id, @roles.collect {|u| [u.name, u.id]}, {:selected => @user.site_role.try(:id), :prompt => '--Select--'}, class: "form-control" %>
+</div>
+
+    <h3>Permitted User Roles</h3>
+    <div class="permitted-roles-block">
+    <% if  current_user.super_admin? %>
+      <%= render partial: 'permitted_roles', locals: {site_roles: @roles} %> 
+    <% else %>
+      <%= render partial: 'permitted_roles', locals: {site_roles: current_user.permitted_roles} %> 
+    <% end %>
+    </div>
+
+<% if false && @user.super_admin?  %>
+  <% (@tenants || [current_user.tenant]).each do |t| %>
+    <%cl = "a-hide" unless @user.tenant_id == t.id %>
+    <div class="<%="sites form-group #{cl}"%>" id="<%=t.id%>">
+      <%= label_tag :sites %><br />
+      <%= select_tag :site_ids, options_from_collection_for_select(t.sites, :id, :name),:multiple => true, class: "form-control" %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="actions form-group">
+  <div class="col-sm-10">
+    <%= f.submit (@user.new_record? ? "Create" : "Update"), class: 'btn btn-success' %>
+    <%= link_to 'Back', users_path, :class => 'btn btn-default' %>
+  </div>
+</div>
+
+<% end %>
+

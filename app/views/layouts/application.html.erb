@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Captive portal</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= render 'layouts/navigation' %>
+
+  <div id="main-container" class="container" style="margin-top: 72px;">
+    <div class="row">
+    <% if user_signed_in? %>
+      <div class="col-xs-3">
+        <div>
+          <% if current_user.super_admin? -%>
+            <%= link_to 'Roles Management', site_roles_url, class: "list-group-item" %>
+            <%= link_to 'Tenants Management', tenants_url, class: "list-group-item" %>
+          <% end -%>
+          <%= link_to 'Users Management', users_url, class: "list-group-item" if can? :read, User  %>
+          <%= link_to 'Sites Management', "/sites", class: "list-group-item" if can? :read, Site %>
+          <%= link_to 'Templates Management', "/templates", class: "list-group-item" if can? :read, SiteTemplate %>
+          <%= link_to 'Vouchers Management', "/vouchers", class: "list-group-item" if can? :read, Voucher %>
+          <%= link_to 'SMS Gateway Management', "/sms_gateway", class: "list-group-item" if can? :read, SmsGatewayManagement %>
+          <%= link_to 'Radius Configuration', "/radius_config", class: "list-group-item" if can? :read, RadiusConfiguration %>
+          <%= link_to 'Time Policy', "/time_policy", class: "list-group-item" if can? :read, TimePolicy %>
+          <%= link_to 'Guests Management', "/guests", class: "list-group-item" if can? :read, GuestManagement %>
+          <%= link_to 'Analytics Management', "/analytics", class: "list-group-item" if can? :read, Analytic %>
+          <%= link_to 'Access Points Management', "/access_points", class: "list-group-item" if can? :read, AccessPoint %>
+          <%= link_to 'Reports ', "/reports", class: "list-group-item" if can? :read, Report %>
+        </div>
+      </div>
+      <% end -%>
+      <div class="col-xs-9">
+  	<div class="row">
+          <div class="col-xs-12">
+            <% flash.each do |type, message| %>
+              <div class="alert <%= bootstrap_class_for(type) %> alert-dismissible fade in">
+                <%= message %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <div class="row"  style='min-height: 60px;'>
+      <div class="col-xs-12">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

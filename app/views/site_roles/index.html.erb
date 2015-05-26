@@ -1,0 +1,26 @@
+<h1>Roles</h1>
+<%= link_to 'New Site role', new_site_role_path, class: 'btn btn-primary'%>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th align="center">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_roles.each do |site_role| %>
+      <tr>
+        <td><%= site_role.name %></td>
+        <td>
+          <%= link_to 'Edit', edit_site_role_path(site_role), :class => "label label-info" if can? :update,site_role%>
+          <%= link_to 'Destroy', site_role, method: :delete, data: { confirm: 'Are you sure?' }, :class => "label label-danger" if can? :destroy, site_role%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @site_roles -%>
+
+
