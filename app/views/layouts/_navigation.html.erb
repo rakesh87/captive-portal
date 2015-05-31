@@ -2,7 +2,7 @@
   <div class="container">
     <% if user_signed_in? %>
     <div class="navbar-header">
-      <div class="navbar-brand">Management</div>
+      <div class="navbar-brand"><%= link_to("Management", root_url, style: "color: #5c92fa;text-decoration: none;") %></div>
       <%= link_to("#{current_user.tenant.name}", "#", class: "navbar-brand", style: "color: #5c92fa;") if current_user.tenant %>
     </div>
     <% end %>
